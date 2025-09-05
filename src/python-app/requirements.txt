@@ -1,0 +1,8 @@
+flask==3.0.3
+requests==2.32.3
+pandas==2.2.2
+numpy==1.26.4
+sqlalchemy==2.0.30
+pytest==8.2.2
+gunicorn==22.0.0
+python-dotenv==1.0.1
