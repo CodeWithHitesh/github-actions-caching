@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: node-app/package.json 
+          cache-dependency-path: src/node-app/package.json 
 
       - name: Install dependencies
         working-directory: node-app
