@@ -1,0 +1,41 @@
+name: Python CI with venv Caching
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Restore the .venv cache (based on requirements.txt hash)
+      - name: Restore cached venv
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('src/python-app/requirements.txt') }}
+
+      # Create venv and install dependencies only if cache miss
+      - name: Set up virtualenv
+        run: |
+          if [ ! -d ".venv" ]; then
+            python -m venv .venv
+            .venv/bin/pip install --upgrade pip
+            .venv/bin/pip install -r src/python-app/requirements.txt
+          fi
+
+      # Example: Run tests or scripts using the cached venv
+      - name: Run Python script using venv
+        run: |
+          source .venv/bin/activate
+          python --version
+          pip list
