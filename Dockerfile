@@ -39,4 +39,7 @@ RUN mkdir -p build && \
     ffmpeg -f lavfi -i color=c=red:s=1920x1080:d=60 build/large-video.mp4 && \
     dd if=/dev/zero of=build/fake-artifact.bin bs=5M count=10
 
+# NEW STEP to demonstrate caching: Add monitoring tool
+RUN apt-get update && apt-get install -y --no-install-recommends htop
+
 CMD ["node"]
