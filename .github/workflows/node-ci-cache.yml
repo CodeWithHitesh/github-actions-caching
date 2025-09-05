@@ -20,9 +20,9 @@ jobs:
           cache-dependency-path: src/node-app/package.json 
 
       - name: Install dependencies
-        working-directory: node-app
+        working-directory: src/node-app
         run: npm ci
 
       - name: Build
-        working-directory: node-app
+        working-directory: src/node-app
         run: npm run build
