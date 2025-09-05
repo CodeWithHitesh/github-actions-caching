@@ -1,0 +1,28 @@
+name: Node CI with Caching
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js with cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: node-app/package.json 
+
+      - name: Install dependencies
+        working-directory: node-app
+        run: npm ci
+
+      - name: Build
+        working-directory: node-app
+        run: npm run build
