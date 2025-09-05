@@ -1,4 +1,4 @@
-name: Python CI with Caching
+name: Python CI with pip Caching
 
 on:
   workflow_dispatch:
