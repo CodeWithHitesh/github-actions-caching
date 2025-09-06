@@ -1,45 +1,38 @@
-# Template Python Repository
+# GitHub Actions Caching Examples
 
-This repository provides a minimal Python project structure with
-a GitHub Actions workflow for automated testing. It can be used as a
-starting point for new Python projects.
+This repository contains working GitHub Actions workflows demonstrating caching strategies to speed up CI/CD pipelines for Docker, Python, and Node.js projects.
 
-## Project Layout
+## Workflows Included
 
-- `src/` - application source code
-- `tests/` - unit tests
-- `.github/workflows/` - CI configuration
-- `pyproject.toml` - optional project metadata for packaging
+1. **Docker Image Caching**
+   - Uses Docker Buildx cache exporters to persist and reuse Docker layers.
+   - Cuts Docker build times from minutes to seconds.
 
-## Branch Protection
+2. **Python Dependency Caching**
+   - **Traditional pip cache**: caches downloaded wheels in `~/.cache/pip`.
+   - **Virtual environment cache**: caches the entire `.venv` for instant environment setup.
 
-Branch protection rules should require pull request reviews and passing
-status checks before merging to the `main` branch. Admins may be
-allowed to bypass these requirements where needed.
+3. **Node.js Caching**
+   - Uses the `actions/setup-node` action with `cache: 'npm'` to persist npm registry cache.
 
 ## Getting Started
 
-1. Create a virtual environment:
-
+1. Clone this repository:
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate
+   git clone https://github.com/CodeWithHitesh/github-actions-caching.git
    ```
 
-2. Install dependencies (if any) and run tests:
+2. Explore the workflow files in `.github/workflows/`.
 
-   ```bash
-   pip install -r requirements.txt  # optional
-   pytest
-   ```
+3. Adapt the examples to your own projects by updating paths, keys, and lockfiles.
 
-## pyproject.toml
+## More Information
 
-`pyproject.toml` stores build configuration and project metadata. It enables
-standard packaging with `setuptools` and can declare dependencies. You may
-remove it for simple scripts, but it is recommended if you intend to distribute
-the project as a package.
+For a detailed walkthrough, real-world metrics, and a narrative on how these strategies rescued my sanity at 3 AM, check out my Medium article:
 
-## License
+**The Great Speed Heist: How I Turned My Sluggish GitHub Actions into Lightning-Fast Workflows**  
+https://medium.com/@hiteshmalhotra622/the-great-speed-heist-how-i-turned-my-sluggish-github-actions-into-lightning-fast-workflows-8f7a32478989
 
-This project is provided as-is under the MIT License.
+---
+
+Feel free to file issues or pull requests with enhancements, questions, or feedback!
